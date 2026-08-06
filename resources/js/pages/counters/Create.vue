@@ -79,12 +79,12 @@ defineProps<{
                     <div class="grid gap-2">
                         <Label for="is_active">Status</Label>
                         <div class="flex items-center space-x-3 rounded-md border p-3">
-                            <Checkbox
-                                id="is_active"
-                                name="is_active"
-                                value="1"
-                                default-checked
-                            />
+                        <Checkbox
+                            id="is_active"
+                            name="is_active"
+                            value="1"
+                            :default-value="true"
+                        />
                             <Label for="is_active">Aktif (terlihat di antrean)</Label>
                         </div>
                         <InputError :message="errors.is_active" />

@@ -88,7 +88,7 @@ defineProps<{
                             <Checkbox
                                 id="is_active"
                                 name="is_active"
-                                :default-checked="counter.is_active"
+                                :default-value="counter.is_active"
                                 value="1"
                             />
                             <Label for="is_active">Aktif (terlihat di antrean)</Label>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CounterController;
+use App\Http\Controllers\Admin\DisplayMonitorController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\ServiceController;
 use Illuminate\Http\Request;
@@ -32,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('service-categories', ServiceCategoryController::class)->except(['show']);
         Route::resource('services', ServiceController::class)->except(['show']);
         Route::resource('counters', CounterController::class)->except(['show']);
+        Route::resource('display-monitors', DisplayMonitorController::class)->except(['show']);
     });
 });
 

@@ -134,7 +134,7 @@ defineProps<{
                             <Checkbox
                                 id="reset_number"
                                 name="reset_number"
-                                :default-checked="service.reset_number"
+                                :default-value="service.reset_number"
                                 value="1"
                             />
                             <Label for="reset_number">Reset nomor setiap hari</Label>
@@ -148,7 +148,7 @@ defineProps<{
                             <Checkbox
                                 id="is_active"
                                 name="is_active"
-                                :default-checked="service.is_active"
+                                :default-value="service.is_active"
                                 value="1"
                             />
                             <Label for="is_active">Aktif (tampil di antrean)</Label>

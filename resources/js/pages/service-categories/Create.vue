@@ -64,7 +64,7 @@ defineOptions({
                     </div>
 
                     <div class="flex items-center space-x-3">
-                        <Checkbox id="is_active" name="is_active" value="1" default-checked />
+                        <Checkbox id="is_active" name="is_active" value="1" :default-value="true" />
                         <Label for="is_active">Active</Label>
                     </div>
                     <InputError :message="errors.is_active" />

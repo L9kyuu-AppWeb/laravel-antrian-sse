@@ -77,7 +77,7 @@ defineOptions({
                         <Checkbox
                             id="is_active"
                             name="is_active"
-                            :default-checked="serviceCategory.is_active"
+                             :default-value="serviceCategory.is_active"
                             value="1"
                         />
                         <Label for="is_active">Active</Label>
