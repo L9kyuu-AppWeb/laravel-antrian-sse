@@ -26,6 +26,7 @@ Laravel 13 (PHP 8.3) Vue Starter Kit — an SSE (Server-Sent Events) learning pr
 - Demo accounts (password `password`) seeded per role (`admin|operator|penjaga|monitor`@antrian.test); login page auto-fills via `demoAccounts` prop from `FortifyServiceProvider`
 - Service Categories CRUD (admin only) — `admin/service-categories` with CRUD, table, `ServiceCategoryController`
 - Services CRUD (admin only) — `admin/services` with CRUD, table, `ServiceController` (prefix, digit, reset, category relation)
+- Counters CRUD (admin only) — `admin/counters` with CRUD, table, `CounterController` (name, service, status)
 - Pest for tests, Larastan (level 7), Pint (laravel preset)
 - DB: SQLite default; tests use `sqlite :memory:` (phpunit.xml)
 

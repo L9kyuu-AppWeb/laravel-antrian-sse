@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -34,6 +35,14 @@ class Service extends Model
     public function serviceCategory(): BelongsTo
     {
         return $this->belongsTo(ServiceCategory::class);
+    }
+
+    /**
+     * @return HasMany<Counter, $this>
+     */
+    public function counters(): HasMany
+    {
+        return $this->hasMany(Counter::class);
     }
 
     protected function casts(): array
