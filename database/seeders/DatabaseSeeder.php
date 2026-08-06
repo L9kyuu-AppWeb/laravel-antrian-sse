@@ -32,5 +32,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Monitor',
             'email' => 'monitor@antrian.test',
         ]);
+
+        $this->call(ServiceCategorySeeder::class);
     }
 }

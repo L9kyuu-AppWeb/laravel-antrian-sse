@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ServiceCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,6 +25,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard/monitor', fn () => Inertia::render('dashboard/Monitor'))
         ->middleware('role:monitor')
         ->name('dashboard.monitor');
+
+    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::resource('service-categories', ServiceCategoryController::class)->except(['show']);
+    });
 });
 
 require __DIR__.'/settings.php';
