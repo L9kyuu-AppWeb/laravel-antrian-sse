@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Form, Head } from '@inertiajs/vue3';
+import { Form, Head, useForm } from '@inertiajs/vue3';
 import InputError from '@/components/InputError.vue';
 import PasskeyVerify from '@/components/PasskeyVerify.vue';
 import PasswordInput from '@/components/PasswordInput.vue';
@@ -8,9 +8,16 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
+
+export interface DemoAccount {
+    name: string;
+    email: string;
+    role: string;
+}
 
 defineOptions({
     layout: {
@@ -22,7 +29,20 @@ defineOptions({
 defineProps<{
     status?: string;
     canResetPassword: boolean;
+    demoAccounts?: DemoAccount[];
 }>();
+
+const demoForm = useForm({
+    email: '',
+    password: '',
+    remember: false,
+});
+
+const fillDemo = (account: DemoAccount) => {
+    demoForm.email = account.email;
+    demoForm.password = 'password';
+    demoForm.post(store.url());
+};
 </script>
 
 <template>
@@ -101,4 +121,39 @@ defineProps<{
             </Button>
         </div>
     </Form>
+
+    <div v-if="demoAccounts && demoAccounts.length > 0" class="mt-8">
+        <h3 class="mb-4 text-center text-sm font-medium text-muted-foreground">
+            Demo accounts per role
+        </h3>
+        <div class="grid grid-cols-2 gap-4 max-w-md mx-auto">
+            <button
+                v-for="account in demoAccounts"
+                :key="account.email"
+                type="button"
+                class="group relative flex flex-col items-center justify-center rounded-xl border bg-card p-4 text-left shadow-sm transition-all hover:bg-muted/50 hover:border-primary/50"
+                :title="`Auto-fill ${account.name} (${account.role})`"
+                :tabindex="-1"
+                :disabled="demoForm.processing"
+                @click="fillDemo(account)"
+            >
+                <div class="mb-2">
+                    <Avatar class="h-10 w-10">
+                        <AvatarFallback>
+                            {{ account.name.charAt(0) }}
+                        </AvatarFallback>
+                    </Avatar>
+                </div>
+                <div class="text-center">
+                    <div class="font-semibold text-sm">{{ account.name }}</div>
+                    <div class="text-xs text-muted-foreground truncate w-full" :title="account.email">
+                        {{ account.email }}
+                    </div>
+                    <Badge class="mt-2 text-[10px] uppercase" :variant="account.role === 'admin' ? 'default' : 'secondary'">
+                        {{ account.role }}
+                    </Badge>
+                </div>
+            </button>
+        </div>
+    </div>
 </template>

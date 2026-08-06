@@ -18,11 +18,12 @@ Laravel 13 (PHP 8.3) Vue Starter Kit — an SSE (Server-Sent Events) learning pr
 
 ## Stack
 
-- Inertia v3 + Vue 3, pages in `resources/js/pages/`, `@/` → `resources/js/`
+- Inertia v3 + Vue 3, pages in `resources/js/pages/` (lowercase), `@/` → `resources/js/`
 - Tailwind v4 (CSS-based config, no `tailwind.config.js`)
 - Wayfinder for typed routes — import from `@/actions/` / `@/routes/`
 - shadcn-vue components (reka-ui, lucide icons)
 - Fortify for auth (routes/controllers auto-registered in `app/Actions/Fortify/`)
+- Demo accounts (password `password`) seeded per role (`admin|operator|penjaga|monitor`@antrian.test); login page auto-fills via `demoAccounts` prop from `FortifyServiceProvider`
 - Pest for tests, Larastan (level 7), Pint (laravel preset)
 - DB: SQLite default; tests use `sqlite :memory:` (phpunit.xml)
 
