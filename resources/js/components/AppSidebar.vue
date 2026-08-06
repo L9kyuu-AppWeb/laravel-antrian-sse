@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { BookOpen, FolderGit2, LayoutGrid, Tag } from '@lucide/vue';
+import { BookOpen, ClipboardList, FolderGit2, LayoutGrid, Tag } from '@lucide/vue';
 import { computed } from 'vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
@@ -16,11 +16,11 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
-import { index } from '@/routes/admin/service-categories';
+import { index as serviceCategoriesRoute } from '@/routes/admin/service-categories';
+import { index as servicesRoute } from '@/routes/admin/services';
 import type { NavItem } from '@/types';
 
 const dashboardRoute = () => dashboard();
-const serviceCategoriesRoute = () => index();
 
 const page = usePage();
 const isAdmin = computed(() => page.props.auth.user.role === 'admin');
@@ -33,6 +33,11 @@ const mainNavItems = computed<NavItem[]>(() => [
     },
     ...(isAdmin.value
         ? [
+              {
+                  title: 'Layanan',
+                  href: servicesRoute(),
+                  icon: ClipboardList,
+              },
               {
                   title: 'Service Categories',
                   href: serviceCategoriesRoute(),

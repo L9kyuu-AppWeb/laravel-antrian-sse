@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ServiceCategoryController;
+use App\Http\Controllers\Admin\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
         Route::resource('service-categories', ServiceCategoryController::class)->except(['show']);
+        Route::resource('services', ServiceController::class)->except(['show']);
     });
 });
 
